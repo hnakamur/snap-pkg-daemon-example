@@ -1,7 +1,5 @@
 #!/bin/sh
 set -eu
 
-while :; do
-  logger -t my-snap-daemon2 hello from daemon2
-  sleep 1
-done
+logger -t my-snap-name cannot start daemon2
+exit 1

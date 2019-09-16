@@ -13,5 +13,5 @@ confinement: devmode # use 'strict' once you have the right plugs and slots
 
 parts:
   my-part:
-    # See 'snapcraft plugins'
-    plugin: nil
+    source: commands/
+    plugin: dump

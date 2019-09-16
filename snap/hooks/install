@@ -1,0 +1,13 @@
+#!/bin/sh -eu
+
+mkdir -p "${SNAP_COMMON}/daemon2/etc"
+chmod 0711 "${SNAP_COMMON}/daemon2/etc"
+
+cat <<EOF > "${SNAP_COMMON}/daemon2/etc/daemon2.conf"
+# This file will be sourced from /snap/my-snap-name/current/daemon2.start.
+# Please set non-empty message here.
+# NOTE: This is a part of shell script, so you need to follow the shell
+# syntax like:
+# msg="Hello, world"
+msg=
+EOF

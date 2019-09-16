@@ -1,5 +1,21 @@
 #!/bin/sh
 set -eu
 
-logger -t my-snap-name cannot start daemon2
-exit 1
+conf_file=${SNAP_COMMON}/daemon2/etc/daemon2.conf
+
+if [ ! -f "$conf_file" ]; then
+  logger -t my-snap-name Please create config file "$conf_file"
+  exit 1
+fi
+
+. "$conf_file"
+
+if [ -z "${msg:-}" ]; then
+  logger -t my-snap-name Please set non-empty value to msg in "$conf_file"
+  exit 1
+fi
+
+while :; do
+  logger -t my-snap-name $msg from daemon2	
+  sleep 1
+done

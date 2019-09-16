@@ -19,6 +19,10 @@ apps:
     command: daemon2.start
     daemon: simple
 
+hooks:
+  install:
+    plugs: []
+
 parts:
   my-part:
     source: commands/

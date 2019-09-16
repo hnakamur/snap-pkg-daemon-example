@@ -1,0 +1,4 @@
+#!/bin/sh -eu
+
+pid=$(cat "${SNAP_COMMON}/run/daemon2.pid")
+/bin/kill -HUP "$pid"

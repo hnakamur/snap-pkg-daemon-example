@@ -17,6 +17,7 @@ apps:
     daemon: simple
   daemon2:
     command: daemon2.start
+    reload-command: daemon2.reload
     daemon: simple
 
 hooks:

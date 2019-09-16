@@ -4,6 +4,14 @@ set -eu
 conf_file="${SNAP_COMMON}/daemon2/etc/daemon2.conf"
 log_dir="${SNAP_COMMON}/log"
 log_file="${log_dir}/daemon2.log"
+run_dir="${SNAP_COMMON}/run"
+pid_file="${SNAP_COMMON}/run/daemon2.pid"
+
+reopen_log() {
+  echo "$(date +%Y-%m-%dT%H:%M:%S) pretend to reopen log file." >> "$log_file"
+}
+
+trap reopen_log 1
 
 if [ ! -f "$conf_file" ]; then
   logger -t my-snap-name Please create config file "$conf_file"
@@ -17,7 +25,9 @@ if [ -z "${msg:-}" ]; then
   exit 1
 fi
 
-mkdir -p "$log_dir"
+mkdir -p "$log_dir" "$run_dir"
+echo "$$" > "$pid_file"
+
 while :; do
   echo "$(date +%Y-%m-%dT%H:%M:%S) $msg" >> "$log_file"
   sleep 1

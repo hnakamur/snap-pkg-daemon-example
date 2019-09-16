@@ -15,6 +15,9 @@ apps:
   daemon:
     command: daemon.start
     daemon: simple
+  daemon2:
+    command: daemon2.start
+    daemon: simple
 
 parts:
   my-part:

@@ -1,7 +1,9 @@
 #!/bin/sh
 set -eu
 
-conf_file=${SNAP_COMMON}/daemon2/etc/daemon2.conf
+conf_file="${SNAP_COMMON}/daemon2/etc/daemon2.conf"
+log_dir="${SNAP_COMMON}/log"
+log_file="${log_dir}/daemon2.log"
 
 if [ ! -f "$conf_file" ]; then
   logger -t my-snap-name Please create config file "$conf_file"
@@ -15,7 +17,8 @@ if [ -z "${msg:-}" ]; then
   exit 1
 fi
 
+mkdir -p "$log_dir"
 while :; do
-  logger -t my-snap-name $msg from daemon2	
+  echo "$(date +%Y-%m-%dT%H:%M:%S) $msg" >> "$log_file"
   sleep 1
 done
